@@ -1,2 +1,2 @@
-# lstm_swl
-This is a code repository of an LSTM model training and evaluation for ground water level prediction
+# LSTM for SWL Prediction
+This is an implementation of an LSTM model to predict ground water level. Due to confidentiality, unfortunately the data used to train, validate, and test the model cannot be uploaded to the repository. The PyTorch library is required to run the code, and while Tensorboard is not required to run, it is highly recommended to visualize the training and validation, as well as effects of different hyperparameters used to train the model.
