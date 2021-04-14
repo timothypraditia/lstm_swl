@@ -74,7 +74,7 @@ class Initialize_Data:
         
         # Find minimum value of each variable
         cfg.min_swl = torch.min(self.inp_swl) - 0.15
-        cfg.min_p = torch.min(self.inp_p)
+        cfg.min_p = torch.min(self.inp_p) # minimum values is zero
         cfg.min_et = torch.min(self.inp_et)
         
         # Find maximum value of each variable
