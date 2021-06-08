@@ -86,9 +86,9 @@ class Initialize_Data:
         # Find minimum value of each variable
         cfg.min_swl = torch.min(self.inp_swl) - 0.15 # Decreasing by 15 cm
         cfg.min_p = torch.min(self.inp_p) # Minimum value is already 0 
-        cfg.min_et = torch.min(self.inp_et)# Minimum value is already 0
-        cfg.min_w5 = torch.min(self.inp_w5)# Minimum value is already 0
-        cfg.min_w6 = torch.min(self.inp_w6)# Minimum value is already 0
+        cfg.min_et = torch.min(self.inp_et) # Minimum value is already 0
+        cfg.min_w5 = torch.min(self.inp_w5) # Minimum value is already 0
+        cfg.min_w6 = torch.min(self.inp_w6) # Minimum value is already 0
         
         # Find maximum value of each variable
         cfg.max_swl = torch.max(self.inp_swl) + 0.15 # Increasing by 15 cm
