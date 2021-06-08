@@ -400,15 +400,23 @@ class Training:
             inp_temp_w5 = []
             lstm_output_train_w5 = []
             
+            temp_w5 = inputs_train[:,:,10:12]
+            eps_w5 = 0.5
+            pump_idx_w5 = torch.where(temp_w5 > eps_w5)
+            if len(pump_idx_w5 > self.cfg.num_samples_phys):
+                rand_pump_idx_w5 = pump_idx_w5[torch.randint(0,len(pump_idx_w5),self.cfg.num_samples_phys)]
+            else:
+                rand_pump_idx_w5 = pump_idx_w5
+
             for i in range(5):
-                inp_temp_w5.append(inputs_train[rand_idx].clone().detach())
+                inp_temp_w5.append(inputs_train[rand_pump_idx_w5].clone().detach())
                 
                 # Modify the well 5 pumping rate values
-                inp_temp_w5[i][:,:,10:12] = inputs_train[rand_idx,:,10:12].clone().detach() * (0.5 + i*0.25)
+                inp_temp_w5[i][:,:,10:12] = inputs_train[rand_pump_idx_w5,:,10:12].clone().detach() * (0.5 + i*0.25)
                 
                 # Calculate the LSTM outputs with the modified values and store
                 # them in a list
-                lstm_output_train_w5.append(self.model(inputs_swl_train[rand_idx],
+                lstm_output_train_w5.append(self.model(inputs_swl_train[rand_pump_idx_w5],
                                                        inp_temp_w5[i].to(self.cfg.device)).squeeze())
                 
                 # Add the constraint to the loss function
@@ -424,16 +432,24 @@ class Training:
             # and 1.50 times the original values
             inp_temp_w6 = []
             lstm_output_train_w6 = []
-            
+                        
+            temp_w6 = inputs_train[:,:,12:14]
+            eps_w6 = 0.5
+            pump_idx_w6 = torch.where(temp_w6 > eps_w6)
+            if len(pump_idx_w6 > self.cfg.num_samples_phys):
+                rand_pump_idx_w6 = pump_idx_w6[torch.randint(0,len(pump_idx_w6),self.cfg.num_samples_phys)]
+            else:
+                rand_pump_idx_w6 = pump_idx_w6
+
             for i in range(5):
-                inp_temp_w6.append(inputs_train[rand_idx].clone().detach())
+                inp_temp_w6.append(inputs_train[rand_pump_idx_w6].clone().detach())
                 
                 # Modify the well 6 pumping rate values
-                inp_temp_w6[i][:,:,12:14] = inputs_train[rand_idx,:,12:14].clone().detach() * (0.5 + i*0.25)
+                inp_temp_w6[i][:,:,12:14] = inputs_train[rand_pump_idx_w6,:,12:14].clone().detach() * (0.5 + i*0.25)
                 
                 # Calculate the LSTM outputs with the modified values and store
                 # them in a list
-                lstm_output_train_w6.append(self.model(inputs_swl_train[rand_idx],
+                lstm_output_train_w6.append(self.model(inputs_swl_train[rand_pump_idx_w6],
                                                        inp_temp_w6[i].to(self.cfg.device)).squeeze())
                 
                 # Add the constraint to the loss function
