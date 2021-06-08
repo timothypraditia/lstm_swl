@@ -94,8 +94,8 @@ class Initialize_Data:
         cfg.max_swl = torch.max(self.inp_swl) + 0.15 # Increasing by 15 cm
         cfg.max_p = torch.max(self.inp_p) * 1.15 # Increasing by 15 percent
         cfg.max_et = torch.max(self.inp_et) * 1.15 # Increasing by 15 percent
-        cfg.max_w5 = torch.max(self.inp_w5) # Maximum pumping rate is defined
-        cfg.max_w6 = torch.max(self.inp_w6) # Maximum pumping rate is defined
+        cfg.max_w5 = torch.max(self.inp_w5) # Maximum possible value already included
+        cfg.max_w6 = torch.max(self.inp_w6) # Maximum possible value already included
         
         
         

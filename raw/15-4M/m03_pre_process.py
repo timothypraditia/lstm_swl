@@ -88,24 +88,24 @@ class Initialize_Data:
         """
         
         # Find minimum value of each variable
-        cfg.min_swl = torch.min(self.inp_swl) - 0.15
-        cfg.min_p = torch.min(self.inp_p)
-        cfg.min_t = torch.min(self.inp_t) * 1.15
-        cfg.min_sd = torch.min(self.inp_sd)
-        cfg.min_rh = torch.min(self.inp_rh) * 0.85
-        cfg.min_wv = torch.min(self.inp_wv)
-        cfg.min_w5 = torch.min(self.inp_w5)
-        cfg.min_w6 = torch.min(self.inp_w6)
+        cfg.min_swl = torch.min(self.inp_swl) - 0.15 # Decreasing by 15 cm
+        cfg.min_p = torch.min(self.inp_p) # Minimum value is already 0 
+        cfg.min_t = torch.min(self.inp_t) * 1.15 # Decreasing by 15 percent
+        cfg.min_sd = torch.min(self.inp_sd) # Minimum value is already 0 
+        cfg.min_rh = torch.min(self.inp_rh) * 0.85 # Decreasing by 15 percent
+        cfg.min_wv = torch.min(self.inp_wv) # Minimum value is already 0 
+        cfg.min_w5 = torch.min(self.inp_w5) # Minimum value is already 0 
+        cfg.min_w6 = torch.min(self.inp_w6) # Minimum value is already 0 
         
         # Find maximum value of each variable
-        cfg.max_swl = torch.max(self.inp_swl) + 0.15
-        cfg.max_p = torch.max(self.inp_p) * 1.15
-        cfg.max_t = torch.max(self.inp_t) * 1.15
-        cfg.max_sd = torch.max(self.inp_sd)
-        cfg.max_rh = torch.max(self.inp_rh)
-        cfg.max_wv = torch.max(self.inp_wv) * 1.15
-        cfg.max_w5 = torch.max(self.inp_w5)
-        cfg.max_w6 = torch.max(self.inp_w6)
+        cfg.max_swl = torch.max(self.inp_swl) + 0.15 # Increasing by 15 cm
+        cfg.max_p = torch.max(self.inp_p) * 1.15 # Increasing by 15 percent
+        cfg.max_t = torch.max(self.inp_t) * 1.15 # Increasing by 15 percent
+        cfg.max_sd = torch.max(self.inp_sd) # Maximum possible value already included
+        cfg.max_rh = torch.max(self.inp_rh) # Maximum possible value already included
+        cfg.max_wv = torch.max(self.inp_wv) * 1.15 # Increasing by 15 percent
+        cfg.max_w5 = torch.max(self.inp_w5) # Maximum possible value already included
+        cfg.max_w6 = torch.max(self.inp_w6) # Maximum possible value already included
         
         
         
