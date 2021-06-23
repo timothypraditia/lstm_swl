@@ -255,7 +255,6 @@ class Training:
         
         # Calculate the prediction using the training dataset
         lstm_output_train = self.model(inputs_swl_train, inputs_train)
-        
         # Calculate the training loss
         lstm_train_loss = self.criterion(lstm_output_train, target_train)
         
@@ -328,10 +327,10 @@ class Training:
             temp_w5 = inputs_train[:,:,4:6]
             eps_w5 = 0.5
             pump_idx_w5 = torch.where(temp_w5 > eps_w5)
-            if len(pump_idx_w5 > self.cfg.num_samples_phys):
-                rand_pump_idx_w5 = pump_idx_w5[torch.randint(0,len(pump_idx_w5),self.cfg.num_samples_phys)]
+            if len(pump_idx_w5[0]) > self.cfg.num_samples_phys:
+                rand_pump_idx_w5 = pump_idx_w5[0][torch.randint(0,len(pump_idx_w5[0]),(self.cfg.num_samples_phys,))]
             else:
-                rand_pump_idx_w5 = pump_idx_w5
+                rand_pump_idx_w5 = pump_idx_w5[0]
 
             for i in range(5):
                 inp_temp_w5.append(inputs_train[rand_pump_idx_w5].clone().detach())
@@ -361,10 +360,10 @@ class Training:
             temp_w6 = inputs_train[:,:,6:]
             eps_w6 = 0.5
             pump_idx_w6 = torch.where(temp_w6 > eps_w6)
-            if len(pump_idx_w6 > self.cfg.num_samples_phys):
-                rand_pump_idx_w6 = pump_idx_w6[torch.randint(0,len(pump_idx_w6),self.cfg.num_samples_phys)]
+            if len(pump_idx_w6[0]) > self.cfg.num_samples_phys:
+                rand_pump_idx_w6 = pump_idx_w6[0][torch.randint(0,len(pump_idx_w6[0]),(self.cfg.num_samples_phys,))]
             else:
-                rand_pump_idx_w6 = pump_idx_w6
+                rand_pump_idx_w6 = pump_idx_w6[0]
 
             for i in range(5):
                 inp_temp_w6.append(inputs_train[rand_pump_idx_w6].clone().detach())
